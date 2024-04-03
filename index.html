@@ -35,7 +35,7 @@
 
   <script>
     // The value below is injected by flutter build, do not touch.
-    const serviceWorkerVersion = "3388979928";
+    const serviceWorkerVersion = "3514735480";
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
@@ -82,7 +82,7 @@
       }
     }
   </style>
-  <script>
+  <!-- <script>
     window.addEventListener("load", function (ev) {
       var loading = document.querySelector("#loading");
       var spinner = document.querySelector("#spinner");
@@ -103,6 +103,79 @@
         },
       });
     });
+  </script> -->
+
+<script>
+  function launchFlutter() {
+    // Download main.dart.js
+    var loading = document.querySelector("#loading");
+      var spinner = document.querySelector("#spinner");
+      loading.textContent = "Initializing application...";
+      spinner.style.display = "block";
+
+      _flutter.loader.loadEntrypoint({
+        serviceWorker: {
+          serviceWorkerVersion: serviceWorkerVersion,
+        },
+        onEntrypointLoaded: async function (engineInitializer) {
+          loading.textContent = "Almost done...";
+          spinner.style.display = "block";
+
+          let appRunner = await engineInitializer.initializeEngine();
+
+          await appRunner.runApp();
+        },
+      });
+  }
+
+  window.addEventListener('load', function(ev) {
+    if ('serviceWorker' in navigator) {
+
+        // getting rid of undesired to fetch remote version.json file updated
+        var seconds = new Date().getTime();
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", '/version.json?v=' + seconds, true);
+        xmlhttp.addEventListener('load', function() {
+            if (xmlhttp.status == 200) {
+                var buildNumber = xmlhttp.responseText;
+                console.log('remote version is ' + buildNumber);
+                var currentBuildNumber = window.localStorage.getItem('buildNumber');
+
+                console.log('local version is ' + currentBuildNumber);
+                // clear worker cache if remote and local version are different
+                if (currentBuildNumber != buildNumber) {
+                    console.log('App update is necessary. Clearing service workers cache');
+                    caches.delete('flutter-app-manifest');
+                    caches.delete('flutter-temp-cache');
+                    caches.delete('flutter-app-cache');
+
+                    // store new version number
+                    window.localStorage.setItem('buildNumber', buildNumber);
+                } else {
+                    console.log('App is up to date');
+                }
+            }
+            launchFlutter();
+        });
+
+        xmlhttp.addEventListener('error', function() {
+            launchFlutter();
+        });
+
+        xmlhttp.addEventListener('abort', function() {
+            launchFlutter();
+        });
+
+        xmlhttp.addEventListener('timeout', function() {
+            launchFlutter();
+        });
+
+        xmlhttp.send();
+    } else {
+        console.log('Service worker not found. Continue app loading.');
+        launchFlutter();
+    }
+  });
   </script>
 
 </body>
