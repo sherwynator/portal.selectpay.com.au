@@ -3,10 +3,10 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"version.json": "8ba39e5df64759604682b3f1025d566c",
-"index.html": "0665240f65108a98aceb71a08bcb3d03",
-"/": "0665240f65108a98aceb71a08bcb3d03",
-"main.dart.js": "baa20272d4715e6149db8cb3fa4a4207",
+const RESOURCES = {"version.json": "496939f81895c1c9e2de9d9175cec2aa",
+"index.html": "2e6ea6b37d548f9c96beb1403b9f2504",
+"/": "2e6ea6b37d548f9c96beb1403b9f2504",
+"main.dart.js": "0554dde1b58f3446e3745df4115cf63f",
 "flutter.js": "c71a09214cb6f5f8996a531350400a9a",
 "favicon.png": "2cfa88ac2ceb26ec5c0586bf29a04550",
 "icons/Icon-192.png": "16afb854744b2468e82d155c875b37c5",
@@ -347,7 +347,7 @@ const RESOURCES = {"version.json": "8ba39e5df64759604682b3f1025d566c",
 "assets/packages/google_places_flutter/images/location.json": "afa33acf2c340246c901718f4efdfccf",
 "assets/shaders/ink_sparkle.frag": "ecc85a2e95f5e9f53123dcaf8cb9b6ce",
 "assets/AssetManifest.bin": "97fc49f33660caf40ecbaf65334d9d38",
-"assets/fonts/MaterialIcons-Regular.otf": "aca313bac0447127da92bc134d2c0aed",
+"assets/fonts/MaterialIcons-Regular.otf": "fbf32f533c5e98effd6fd34e3a8f2350",
 "assets/assets/images/cropped-favicon.png": "5bb99f9003b7a56a485545f50aac9d5b",
 "assets/assets/images/selectpay-hero-banner-1024x617.jpg": "14b91e028c19cdefa4e37d18c04c96e4",
 "assets/assets/images/blockquote-bg-1.webp": "e91aad65e1b99257d3ae0cdf6b5ed714",
